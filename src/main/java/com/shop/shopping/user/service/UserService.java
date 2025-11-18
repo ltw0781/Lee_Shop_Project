@@ -1,0 +1,19 @@
+package com.shop.shopping.user.service;
+
+import com.shop.shopping.user.domain.UserAuth;
+import com.shop.shopping.user.domain.Users;
+
+import jakarta.servlet.http.HttpServletRequest;
+
+public interface UserService {
+    
+    // 회원 가입
+    public int join(Users user) throws Exception;
+
+    // 회원 권한 등록
+    public int insertAuth(UserAuth userAuth) throws Exception;
+
+    // 바로 로그인
+    public boolean login(Users user, HttpServletRequest request);
+
+}
