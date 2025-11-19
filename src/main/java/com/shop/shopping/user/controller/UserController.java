@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -11,9 +12,9 @@ import com.shop.shopping.user.domain.CustomUser;
 import com.shop.shopping.user.domain.Users;
 import com.shop.shopping.user.service.UserService;
 
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Slf4j
@@ -112,8 +113,18 @@ public class UserController {
      * @return
      */
     @GetMapping("/login")
-    public String login() {
+    public String login(@CookieValue(value = "remember-id", required = false) Cookie cookie, Model model) {
         log.info(";;;;;;;;;;;;;;;;;;로그인 페이지;;;;;;;;;;;;;;;;;;");
+        String username = "";
+        boolean rememberId = false;
+        if ( cookie != null ) {
+            log.info("CookieName : " + cookie.getName());
+            log.info("CookieValue : " + cookie.getValue());
+            username = cookie.getValue();
+            rememberId = true;
+        }
+        model.addAttribute("username", username);
+        model.addAttribute("remember-id", rememberId);
         return "login";
     }
     
