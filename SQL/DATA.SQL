@@ -1,9 +1,13 @@
-
-
-
-
-
-
+-- Active: 1750141999158@@127.0.0.1@3306@shopping
+-- DROP TABLE user;
+-- DROP TABLE board;
+-- DROP TABLE cart;
+-- DROP TABLE product;
+-- DROP TABLE user_auth;
+-- DROP TABLE persistent_logins;
+-- DROP TABLE payment;
+-- DROP TABLE orders;
+-- DROP TABLE file;
 
 INSERT INTO user ( username, password, name, email )
 VALUES ( 'user', '$2a$12$TrN..KcVjciCiz.5Vj96YOBljeVTTGJ9AUKmtfbGpgc9hmC7BxQ92', '사용자', 'user@mail.com' );

@@ -1,4 +1,4 @@
--- Active: 1763393025352@@127.0.0.1@3306@shopping
+-- Active: 1752121213398@@127.0.0.1@3306@shopping
 -- 회원 테이블
 CREATE TABLE `user` (
     `NO` bigint NOT NULL AUTO_INCREMENT,

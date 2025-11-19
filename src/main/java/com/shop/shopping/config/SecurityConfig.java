@@ -14,6 +14,8 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 
+import com.shop.shopping.security.LoginFailureHAndler;
+import com.shop.shopping.security.LoginSuccessHandler;
 import com.shop.shopping.user.service.UserDetailServiceImpl;
 
 import lombok.extern.slf4j.Slf4j;
@@ -31,6 +33,12 @@ public class SecurityConfig {
 
     @Autowired
     private UserDetailServiceImpl userDetailsServiceImpl;
+
+    @Autowired
+    private LoginSuccessHandler LoginSuccessHandler;
+
+    @Autowired
+    private LoginFailureHAndler loginFailureHAndler;
 
     /**
      * 기본적으로 로그인 페이지가 제공이 되지 않음
@@ -53,11 +61,14 @@ public class SecurityConfig {
         // http.formLogin( login -> login.permitAll());
 
         // 커스텀 로그인 페이지 지정
-        http.formLogin( login -> login.usernameParameter("id")           // 아이디 파라미터
-                                      .passwordParameter("pw")           // 비밀번호 파라미터
+        http.formLogin( login -> login
+                                    //   .usernameParameter("id")           // 아이디 파라미터
+                                    //   .passwordParameter("pw")           // 비밀번호 파라미터
                                       .loginPage("/login")                       // 로그인 페이지 경로
                                       .loginProcessingUrl("/login")     // 로그인 처리 경로
-                                      .defaultSuccessUrl("/?login=true") // 로그인 성공 후 리다이렉트 경로
+                                    //   .defaultSuccessUrl("/?login=true") // 로그인 성공 후 리다이렉트 경로
+                                    .successHandler(LoginSuccessHandler)                   // 로그인 성공 핸들러 설정
+                                    .failureHandler(loginFailureHAndler)                   // 로그인 실패 핸들러 설정
         );
 
         //  사용자 정의 인증

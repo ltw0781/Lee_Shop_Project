@@ -124,7 +124,7 @@ public class UserController {
             rememberId = true;
         }
         model.addAttribute("username", username);
-        model.addAttribute("remember-id", rememberId);
+        model.addAttribute("rememberId", rememberId);
         return "login";
     }
     
