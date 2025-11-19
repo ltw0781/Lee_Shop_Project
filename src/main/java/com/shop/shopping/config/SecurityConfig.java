@@ -14,6 +14,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 
+import com.shop.shopping.security.CustomAccessDeniedHandler;
 import com.shop.shopping.security.LoginFailureHAndler;
 import com.shop.shopping.security.LoginSuccessHandler;
 import com.shop.shopping.user.service.UserDetailServiceImpl;
@@ -39,6 +40,9 @@ public class SecurityConfig {
 
     @Autowired
     private LoginFailureHAndler loginFailureHAndler;
+
+    @Autowired
+    private CustomAccessDeniedHandler customAccessDeniedHandler;
 
     /**
      * 기본적으로 로그인 페이지가 제공이 되지 않음
@@ -71,6 +75,13 @@ public class SecurityConfig {
                                     .failureHandler(loginFailureHAndler)                   // 로그인 실패 핸들러 설정
         );
 
+        http.exceptionHandling( exception -> exception
+                                        // 예외 처리 페이지 설정
+                                        .accessDeniedPage("/exception")
+                                        // 접근 거부 핸들러 설정
+                                        .accessDeniedHandler(customAccessDeniedHandler)
+         );
+
         //  사용자 정의 인증
         http.userDetailsService(userDetailsServiceImpl);
 
@@ -79,6 +90,16 @@ public class SecurityConfig {
                 .key("shopping")
                 .tokenRepository(tokenRepository())
                 .tokenValiditySeconds(60 * 60 * 24 * 7));
+
+
+        // 로그아웃 설정
+        http.logout( logout -> logout
+                                .logoutUrl("/logout")                      // 로그아웃 요청 경로
+                                .logoutSuccessUrl("/login?logout=true")  // 로그아웃 성공 시 URL
+                                .invalidateHttpSession(true)        // 세션 초기화
+                                .deleteCookies("remember-id")       // 로그아웃 시, 아이디저장 쿠키 삭제
+                                // .logoutSuccessHandler(null)          // 로그아웃 성공 핸들러 설정
+        );
 
         return http.build();
 
