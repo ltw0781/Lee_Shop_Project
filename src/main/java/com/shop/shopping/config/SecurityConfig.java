@@ -100,7 +100,7 @@ public class SecurityConfig {
                                 .logoutUrl("/main/logout")                      // 로그아웃 요청 경로
                                 .logoutSuccessUrl("/main/login?logout=true")  // 로그아웃 성공 시 URL
                                 .invalidateHttpSession(true)        // 세션 초기화
-                                .deleteCookies("remember-id")       // 로그아웃 시, 아이디저장 쿠키 삭제
+                                // .deleteCookies("remember-id")       // 로그아웃 시, 아이디저장 쿠키 삭제
                                 // .logoutSuccessHandler(null)          // 로그아웃 성공 핸들러 설정
         );
 
