@@ -15,7 +15,7 @@ public class ExceptionController {
 
         log.info("접근권한이 없습니다.");
 
-        return "error/403";
+        return "/error/403";
 
     }
     

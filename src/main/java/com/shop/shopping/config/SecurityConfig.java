@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.BadSqlGrammarException;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
@@ -24,6 +25,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity(securedEnabled = true, prePostEnabled = true)
 public class SecurityConfig {
 
     @Autowired
@@ -57,6 +59,7 @@ public class SecurityConfig {
         http.authorizeHttpRequests( auth -> auth
                                 .requestMatchers("/admin", "/admin/**").hasRole("ADMIN")
                                 .requestMatchers("/user", "/user/**").hasAnyRole("USER", "ADMIN")
+                                .requestMatchers( "/main/**").permitAll()
                                 .requestMatchers( "/**").permitAll()
                                 .anyRequest().permitAll()
         );
@@ -68,8 +71,8 @@ public class SecurityConfig {
         http.formLogin( login -> login
                                     //   .usernameParameter("id")           // 아이디 파라미터
                                     //   .passwordParameter("pw")           // 비밀번호 파라미터
-                                      .loginPage("/login")                       // 로그인 페이지 경로
-                                      .loginProcessingUrl("/login")     // 로그인 처리 경로
+                                      .loginPage("/main/login")                       // 로그인 페이지 경로
+                                      .loginProcessingUrl("/main/login")     // 로그인 처리 경로
                                     //   .defaultSuccessUrl("/?login=true") // 로그인 성공 후 리다이렉트 경로
                                     .successHandler(LoginSuccessHandler)                   // 로그인 성공 핸들러 설정
                                     .failureHandler(loginFailureHAndler)                   // 로그인 실패 핸들러 설정
@@ -94,8 +97,8 @@ public class SecurityConfig {
 
         // 로그아웃 설정
         http.logout( logout -> logout
-                                .logoutUrl("/logout")                      // 로그아웃 요청 경로
-                                .logoutSuccessUrl("/login?logout=true")  // 로그아웃 성공 시 URL
+                                .logoutUrl("/main/logout")                      // 로그아웃 요청 경로
+                                .logoutSuccessUrl("/main/login?logout=true")  // 로그아웃 성공 시 URL
                                 .invalidateHttpSession(true)        // 세션 초기화
                                 .deleteCookies("remember-id")       // 로그아웃 시, 아이디저장 쿠키 삭제
                                 // .logoutSuccessHandler(null)          // 로그아웃 성공 핸들러 설정

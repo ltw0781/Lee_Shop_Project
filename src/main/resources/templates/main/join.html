@@ -17,8 +17,8 @@
 
         <!-- 회원가입 영역 -->
         <main class="form-signin login-box w-100 m-auto">
-            <!-- <form id="form" action="/join" method="post" class="needs-validation" onsubmit="return checkSubmit(event)"> -->
-            <form id="form" action="/join" method="post" class="needs-validation">
+            <!-- <form id="form" action="/user/join" method="post" class="needs-validation" onsubmit="return checkSubmit(event)"> -->
+            <form id="form" action="/main/join" method="post" class="needs-validation">
                 <!-- CSRF TOKEN -->
                 <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
                 
