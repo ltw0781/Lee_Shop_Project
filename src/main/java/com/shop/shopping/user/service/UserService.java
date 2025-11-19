@@ -6,7 +6,7 @@ import com.shop.shopping.user.domain.Users;
 import jakarta.servlet.http.HttpServletRequest;
 
 public interface UserService {
-    
+
     // 회원 가입
     public int join(Users user) throws Exception;
 
@@ -15,5 +15,8 @@ public interface UserService {
 
     // 바로 로그인
     public boolean login(Users user, HttpServletRequest request);
+
+    // 회원 조회
+    public Users select(String username) throws Exception;
 
 }

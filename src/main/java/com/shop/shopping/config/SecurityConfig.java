@@ -50,7 +50,15 @@ public class SecurityConfig {
         );
 
         // 폼 로그인 설정
-        http.formLogin( login -> login.permitAll());
+        // http.formLogin( login -> login.permitAll());
+
+        // 커스텀 로그인 페이지 지정
+        http.formLogin( login -> login.usernameParameter("id")           // 아이디 파라미터
+                                      .passwordParameter("pw")           // 비밀번호 파라미터
+                                      .loginPage("/login")                       // 로그인 페이지 경로
+                                      .loginProcessingUrl("/login")     // 로그인 처리 경로
+                                      .defaultSuccessUrl("/?login=true") // 로그인 성공 후 리다이렉트 경로
+        );
 
         //  사용자 정의 인증
         http.userDetailsService(userDetailsServiceImpl);

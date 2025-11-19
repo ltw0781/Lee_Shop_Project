@@ -93,5 +93,13 @@ public class UserServiceImpl implements UserService{
         }
         return result;
     }
+
+    @Override
+    public Users select(String username) throws Exception {
+
+        Users user = userMapper.select(username);
+        return user;
+
+    }
     
 }
