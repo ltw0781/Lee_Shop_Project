@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시판</title>
+</head>
+
+<body>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>번호</th>
+                <th>게시글 타입</th>
+                <th>카테고리</th>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>내용</th>
+                <th>등록일</th>
+                <th>수정일</th>
+                <th>조회수</th>
+            </tr>
+        </thead>
+        <th:block th:each="board : ${boardList}">
+            <tr>
+                <td th:text="${board.no}">1</td>
+                <td th:text="${board.boardType}">공지사항</td>
+                <td th:text="${board.category}">일반</td>
+                <td th:text="${board.title}">첫번째 게시글</td>
+                <td th:text="${board.writer}">admin</td>
+                <td th:text="${board.content}">내용입니다.</td>
+                <td th:text="${board.createdAt}">2024-01-01</td>
+                <td th:text="${board.updatedAt}">2024-01-01</td>
+                <td th:text="${board.viewCount}">0</td>
+            </tr>
+        </th:block>
+    </table>
+</body>
+
+</html>

@@ -1,15 +1,35 @@
--- Active: 1752121213398@@127.0.0.1@3306@shopping
+-- Active: 1763393025352@@127.0.0.1@3306@shopping
+
+SELECT *
+FROM board;
+
+-- 게시판 테이블
+CREATE TABLE `board` (
+    `no` bigint NOT NULL AUTO_INCREMENT,
+    `board_type` int NOT NULL,
+    `category` varchar(255) NOT NULL,
+    `title` varchar(255) NOT NULL,
+    `writer` varchar(255) NOT NULL,
+    `content` TEXT NOT NULL,
+    `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `view_count` int DEFAULT 0,
+    PRIMARY KEY (`no`)
+) COMMENT = '게시판';
+
 -- 회원 테이블
 CREATE TABLE `user` (
-    `NO` bigint NOT NULL AUTO_INCREMENT,
-    `USERNAME` varchar(100) NOT NULL,
-    `PASSWORD` varchar(200) NOT NULL,
-    `NAME` varchar(100) NOT NULL,
-    `EMAIL` varchar(200) DEFAULT NULL,
-    `CREATED_AT` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    `UPDATED_AT` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    `ENABLED` int DEFAULT 1,
-    PRIMARY KEY (`NO`)
+    `no` bigint NOT NULL AUTO_INCREMENT,
+    `username` varchar(100) NOT NULL,
+    `password` varchar(200) NOT NULL,
+    `name` varchar(100) NOT NULL,
+    `email` varchar(200) DEFAULT NULL,
+    `phone` varchar(200) DEFAULT NULL,
+    `address` varchar(200) DEFAULT NULL,
+    `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `enabled` int DEFAULT 1,
+    PRIMARY KEY (`no`)
 ) COMMENT = '회원';
 
 -- 회원 권한 테이블
