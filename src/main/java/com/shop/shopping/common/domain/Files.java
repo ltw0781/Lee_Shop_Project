@@ -1,6 +1,7 @@
 package com.shop.shopping.common.domain;
 
 import java.util.Date;
+import java.util.UUID;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -10,6 +11,7 @@ import lombok.Data;
 public class Files {
 
     private int no; // 파일 번호
+    private String id; // 부모 테이블 정보
     private String parentTable; // 부모 테이블 정보
     private int parentNo; // 부모 엔티티 번호
     private String fileName; // 파일 이름
@@ -21,5 +23,9 @@ public class Files {
     private int fileCode; // 파일 코드
 
     private MultipartFile file; // MultipartFile 객체
+
+    public Files() {
+        this.id = UUID.randomUUID().toString();
+    }
 
 }

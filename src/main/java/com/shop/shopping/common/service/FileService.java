@@ -10,13 +10,13 @@ public interface FileService {
     // 파일 목록
     public List<Files> list() throws Exception;
     // 파일 조회
-    public Files select(int no) throws Exception;
+    public Files select(String id) throws Exception;
     // 파일 등록
     public int insert(Files file) throws Exception;
     // 파일 수정
     public int update(Files file) throws Exception;
     // 파일 삭제
-    public int delete(int no) throws Exception;
+    public int delete(String id) throws Exception;
 
     // 파일 조회 - 부모 기준
     public Files selectByParent(Files file) throws Exception;
@@ -30,7 +30,8 @@ public interface FileService {
     
     // 파일 업로드
     public boolean upload(Files thumbnail) throws Exception;
+
     // 파일 다운로드
-    public Files download(int no) throws Exception;
+    public Files download(String id) throws Exception;
 
 }

@@ -20,7 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
-@RequestMapping("/boards")
+@RequestMapping("/board")
 public class BoardController {
 
     @Autowired
@@ -42,37 +42,41 @@ public class BoardController {
     @GetMapping("/read")
     public String read(@RequestParam("no") int no, Model model, Files file) throws Exception {
 
+        // 게시글 조회
         Board board = boardService.read(no);
-        // 파일 목록 요청
-        file.setParentTable("board");
-        file.setParentNo(no);
-        List<Files> fileList = fileService.listByParent(file);
-
-
-        // 모델 등록
         model.addAttribute("board", board);
+
+        // 파일 목록 요청
+        file.setParentNo(board.getNo());
+        file.setParentTable("board");
+
+        log.info("file : " + file);
+        List<Files> fileList = fileService.listByParent(file);
+        // 모델 등록
         model.addAttribute("fileList", fileList);
+
         // 뷰 페이지 지정
-        return "/boards/read";
+        return "/board/read";
 
     }
 
     @GetMapping("/insert")
     public String insert() throws Exception {
 
-        return "/boards/insert";
+        return "/board/insert";
 
     }
 
     @PostMapping("/insert")
     public String insertPro(Board board) throws Exception {
 
+        log.info("board : " + board);
         int result = boardService.insert(board);
 
         if (result > 0) {
-            return "redirect:/boards/list";
+            return "redirect:/board/list";
         }
-        return "/boards/insert";
+        return "/board/insert";
 
     }
 
@@ -83,7 +87,7 @@ public class BoardController {
         
         model.addAttribute("board", board);
 
-        return "/boards/update";
+        return "/board/update";
 
     }
 
@@ -93,10 +97,10 @@ public class BoardController {
         int result = boardService.update(board);
 
         if (result > 0) {
-            return "redirect:/boards/list";
+            return "redirect:/board/list";
         }
         int no = board.getNo();
-        return "redirect:/boards/update?no=" + no + "&error";
+        return "redirect:/board/update?no=" + no + "&error";
 
     }
 
@@ -106,10 +110,10 @@ public class BoardController {
         int result = boardService.delete(no);
 
         if (result > 0) {
-            return "redirect:/boards/list";
+            return "redirect:/board/list";
         }
 
-        return "redirect:/boards/update?boardId=" + no + "&error";
+        return "redirect:/board/update?no=" + no + "&error";
 
     }
 

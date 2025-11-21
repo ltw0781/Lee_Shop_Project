@@ -34,8 +34,8 @@ public class FileServiceImpl implements FileService {
 
     // 파일 조회
     @Override
-    public Files select(int no) throws Exception {
-        Files file = fileMapper.select(no);
+    public Files select(String id) throws Exception {
+        Files file = fileMapper.select(id);
         return file;
     }
 
@@ -61,28 +61,24 @@ public class FileServiceImpl implements FileService {
 
     // 파일 삭제
     @Override
-    public int delete(int no) throws Exception {
-        // 파일 정보 조회
-        Files file = fileMapper.select(no);
+    public int delete(String id) throws Exception {
+        // 1️⃣ 파일 시스템의 파일 삭제
+        Files file = select(id);
+        String filePath = file.getFilePath();
 
-        // DB 파일 정보 삭제
-        int result = fileMapper.delete(no);
-
-        // 파일 시스템의 실제 파일 삭제
-        if (result > 0) {
-            String filePath = file.getFilePath();
-            File deleteFile = new File(filePath);
-            // 파일 존재 확인
-            if (!deleteFile.exists()) {
-                return result;
-            }
-            // 파일 삭제
-            if (deleteFile.delete()) {
-                log.info("파일이 정상적으로 삭제되었습니다.");
-                log.info("file : " + filePath);
-            } else {
-                log.info("파일 삭제에 실패하였습니다.");
-            }
+        File deleteFile = new File(filePath);
+        // 파일 존재 여부 확인
+        if( !deleteFile.exists() ) {
+            log.error("파일이 존재하지 않습니다.");
+            log.error("filePath : " + filePath);
+            return 0;
+        }
+        int result = 0;
+        if( deleteFile.delete() ) {
+            log.info("[FS] 파일 삭제 성공");
+            // 2️⃣ DB 파일 정보 삭제
+            result = fileMapper.delete(id);
+            log.info("[DB] 파일 정보 삭제 성공");
         }
         return result;
     }
@@ -148,14 +144,14 @@ public class FileServiceImpl implements FileService {
         file.setFileSize(fileSize);
         // ⭐ 넘겨받을 때 세팅함.
         // file.setFileCode(0);
-        insert(file);
+        fileMapper.insert(file);
 
         return true;
     }
 
     @Override
-    public Files download(int no) throws Exception {
-        return download(no);
+    public Files download(String id) throws Exception {
+        return download(id);
     }
 
 }

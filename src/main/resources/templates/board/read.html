@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="/css/reset.css"> -->
+    <link rel="stylesheet" href="/css/style.css">
+    <title>게시판 상세</title>
+</head>
+
+<body>
+    <!-- ✅ Main Content -->
+    <main id="main">
+
+        <div class="board-wrap inner">
+            <div class="board-view">
+                <form id="form" action="/board/delete" method="post">
+                    <!-- CSRF TOKEN -->
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+                    <input type="hidden" name="no" th:value="${board.no}">
+                    <!-- 제목 -->
+                    <div class="board-title">
+                        <span class="meta-category">카테고리 : <span th:text="${board.category}"></span></span>
+                    </div>
+                    <!-- 메타 정보 -->
+                    <div class="view-head">
+                        <h3 th:text="${board.title}"></h3>
+                        <div class="meta">
+                            <span th:text="|작성자 : ${board.writer}|"></span>
+                            <span th:text="|등록일 : ${#dates.format(board.createdAt, 'yyyy-MM-dd')}" |></span>
+                            <span th:text="|조회수 : ${board.viewCount}|"></span>
+                        </div>
+                    </div>
+                    <!-- 본문 내용 -->
+                    <div class="view-body">
+                        <p th:text="${board.content}"></p>
+                    </div>
+
+                    <th:block th:each="file : ${fileList}">
+                        <li>
+                            <!-- 파일명 (다운로드) -->
+                            <a th:href="|/file/${file.no}|" th:text="${file.originName}"></a>
+                            <!-- 파일 삭제 -->
+                            <button type="button" th:onclick="|deleteFile(this, ${file.no})|">삭제</button>
+                        </li>
+                    </th:block>
+
+                    <!-- 버튼 영역 -->
+                    <div class="board-btns">
+                        <button type="button" onclick="moveUpdate()" class="btn btn-primary">수정</button>
+                        <button type="button" onclick="moveList()" class="btn btn-secondary">목록</button>
+                        <button type="button" onclick="actionDelete()" class="btn btn-secondary">삭제</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+
+        let form = document.getElementById('form')
+
+        // 👩‍💻 모델 객체를 자바스크립트로 가져오는 방법
+        let no = "[[${board.no}]]"
+
+        // 수정 화면 이동
+        function moveUpdate() {
+            location.href = '/board/update?no=' + no
+        }
+
+        // 삭제 요청
+        function actionDelete() {
+            let check = confirm('정말로 삭제하시겠습니까?')
+            if (check) {
+                form.action = '/board/delete'
+                form.submit()
+            }
+        }
+
+        // 목록 화면 이동
+        function moveList() {
+            location.href = '/board/list'
+        }
+    </script>
+
+</body>
+
+</html>

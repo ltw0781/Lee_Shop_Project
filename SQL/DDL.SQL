@@ -1,4 +1,4 @@
--- Active: 1752121213398@@127.0.0.1@3306@shopping
+-- Active: 1763393025352@@127.0.0.1@3306@shopping
 
 -- 자동 로그인 테이블 삭제
 DROP TABLE persistent_logins;
@@ -51,6 +51,7 @@ DROP TABLE file;
 -- 파일 테이블
 CREATE TABLE file (
     no INT AUTO_INCREMENT PRIMARY KEY,
+    id VARCHAR(100) NOT NULL,
     parent_table VARCHAR(100) NOT NULL,
     parent_no INT NOT NULL,
     file_name VARCHAR(255) NOT NULL,
