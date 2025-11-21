@@ -1,0 +1,23 @@
+<th:block th:fragment="custom-header">
+    <header>
+        <div class="inner header-top">
+            <h1 class="logo"><a href="/">MYSHOP</a></h1>
+            <form class="search-bar">
+                <input type="text" placeholder="상품을 검색해보세요" />
+                <button type="submit">검색</button>
+            </form>
+            <div class="header-actions">
+                <a href="#">로그인</a>
+                <a href="#">회원가입</a>
+                <a href="#">장바구니(0)</a>
+            </div>
+        </div>
+        <nav class="gnb">
+            <div class="inner gnb-list">
+                <a href="#">상품 전체보기</a>
+                <a href="/boards/list">게시판</a>
+            </div>
+        </nav>
+    </header>
+    <script src="/js/header.js"></script>
+</th:block>
