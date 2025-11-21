@@ -1,0 +1,29 @@
+/* 공통영역 */
+th,td {
+    padding : 10px 0;
+}
+
+
+#main {}
+
+#main section.container {}
+
+#main section.container h2.btitle {}
+
+#main section.container .tboard {}
+
+#main section.container .tboard table {
+    width: 100%;
+}
+
+#main section.container .tboard table thead {}
+
+#main section.container .tboard table thead tr {}
+
+#main section.container .tboard table thead tr th {}
+
+#main section.container .tboard table tbody {}
+
+#main section.container .tboard table tbody tr {}
+
+#main section.container .tboard table tbody tr td {}

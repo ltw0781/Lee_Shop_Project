@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="board-wrap inner">
+        <h2 class="board-title">공지사항 등록</h2>
+        <form class="board-form" action="/board/insert" method="post" enctype="multipart/form-data">
+            <div class="form-row">
+                <label for="title">제목</label>
+                <input type="text" id="title" name="title" placeholder="제목을 입력하세요" required>
+            </div>
+            <div class="form-row">
+                <label for="writer">작성자</label>
+                <input type="text" id="writer" name="writer" value="관리자" readonly>
+            </div>
+            <div class="form-row">
+                <label for="content">내용</label>
+                <textarea id="content" name="content" placeholder="내용을 입력하세요"></textarea>
+            </div>
+            <div class="form-row">
+                <label for="file">첨부파일</label>
+                <input type="file" id="file" name="file">
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">등록</button>
+                <a href="/board/list" class="btn btn-secondary">목록</a>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

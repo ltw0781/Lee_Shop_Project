@@ -16,8 +16,7 @@ public class MainController {
 
     @GetMapping("")
     // public String main(Principal principal, Model model) throws Exception {
-    // public String main(Authentication authentication, Model model) throws
-    // Exception {
+    // public String main(Authentication authentication, Model model) throws Exception {
     public String main(@AuthenticationPrincipal CustomUser authUser, Model model) throws Exception {
 
         log.info(";;;;;;;;;;;;;;;;;;;;;;;;;;;;;메인화면;;;;;;;;;;;;;;;;;;;;;;;;;;;;;");

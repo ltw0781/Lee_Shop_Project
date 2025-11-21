@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>회원가입 | MYSHOP</title>
+    <link rel="stylesheet" href="/css/style.css" />
+</head>
+
+<body>
+
+    <!-- ✅ 헤더 -->
+    <header class="header">
+        <div class="inner header-top">
+            <h1 class="logo"><a href="/">MYSHOP</a></h1>
+        </div>
+    </header>
+
+    <!-- ✅ 회원가입 영역 -->
+    <main class="auth-wrap inner">
+        <h2 class="auth-title">회원가입</h2>
+
+        <form class="auth-form" action="/user/register" method="post">
+            <!-- 아이디 -->
+            <div class="form-row id-row">
+                <label for="userId">아이디</label>
+                <div class="input-btn">
+                    <input type="text" id="userId" name="userId" placeholder="아이디를 입력하세요" required>
+                    <button type="button" class="btn btn-secondary">중복확인</button>
+                </div>
+            </div>
+
+            <!-- 비밀번호 -->
+            <div class="form-row">
+                <label for="password">비밀번호</label>
+                <input type="password" id="password" name="password" placeholder="비밀번호를 입력하세요" required>
+            </div>
+
+            <!-- 비밀번호 확인 -->
+            <div class="form-row pw-row">
+                <label for="confirmPassword">비밀번호 확인</label>
+                <div class="input-btn">
+                    <input type="password" id="confirmPassword" name="confirmPassword" placeholder="비밀번호를 다시 입력하세요"
+                        required>
+                    <button type="button" class="btn btn-secondary">확인</button>
+                </div>
+            </div>
+
+            <!-- 이메일 -->
+            <div class="form-row">
+                <label for="email">이메일</label>
+                <input type="email" id="email" name="email" placeholder="example@email.com" required>
+            </div>
+
+            <!-- 전화번호 -->
+            <div class="form-row">
+                <label for="phone">전화번호</label>
+                <input type="text" id="phone" name="phone" placeholder="010-0000-0000" required>
+            </div>
+
+            <!-- 주소 -->
+            <div class="form-row">
+                <label for="address">주소</label>
+                <input type="text" id="address" name="address" placeholder="주소를 입력하세요" required>
+            </div>
+
+            <!-- 버튼 -->
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">회원가입</button>
+                <a href="/login" class="btn btn-secondary">로그인</a>
+            </div>
+        </form>
+    </main>
+
+    <!-- ✅ 푸터 -->
+    <footer class="footer">
+        <div class="inner">
+            <p>© 2025 MYSHOP. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>

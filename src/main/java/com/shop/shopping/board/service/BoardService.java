@@ -2,12 +2,15 @@ package com.shop.shopping.board.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.shop.shopping.board.domain.Board;
+import com.shop.shopping.common.domain.Page;
 
 public interface BoardService {
-
+    
     // 게시글 목록
-    public List<Board> list() throws Exception;
+    public List<Board> list(@Param("page") Page page) throws Exception;
 
     // 게시글 상세
     public Board read(int no) throws Exception;

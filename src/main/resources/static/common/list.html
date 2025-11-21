@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>공지사항 목록</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+    <!-- ✅ 공통 Header -->
+    <header class="header">
+        <div class="inner header-top">
+            <h1 class="logo"><a href="/">MYSHOP</a></h1>
+            <form class="search-bar">
+                <input type="text" placeholder="검색어를 입력하세요">
+                <button type="submit">검색</button>
+            </form>
+            <div class="header-actions">
+                <a href="#">로그인</a>
+                <a href="#">회원가입</a>
+            </div>
+        </div>
+        <nav class="gnb">
+            <div class="inner gnb-list">
+                <a href="/">홈</a>
+                <a href="#">공지사항</a>
+                <a href="#">이벤트</a>
+                <a href="#">고객센터</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ✅ 게시판 목록 -->
+    <main class="board-wrap inner">
+        <h2 class="board-title">공지사항</h2>
+
+        <!-- 상단 버튼 -->
+        <div class="board-top">
+            <div class="board-search">
+                <form>
+                    <input type="text" placeholder="제목 또는 내용 검색">
+                    <button type="submit" class="btn btn-primary">검색</button>
+                </form>
+            </div>
+            <div>
+                <a href="/board/insert" class="btn btn-primary">글쓰기</a>
+            </div>
+        </div>
+
+        <!-- 목록 테이블 -->
+        <div class="tboard">
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width:70px;">번호</th>
+                        <th>제목</th>
+                        <th style="width:150px;">작성자</th>
+                        <th style="width:160px;">작성일</th>
+                        <th style="width:100px;">조회수</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>5</td>
+                        <td class="left"><a href="/board/view/5">[공지] 11월 배송 일정 안내</a></td>
+                        <td>관리자</td>
+                        <td>2025-11-08</td>
+                        <td>54</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td class="left"><a href="/board/view/4">[이벤트] 신규회원 쿠폰 지급</a></td>
+                        <td>운영팀</td>
+                        <td>2025-11-05</td>
+                        <td>73</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td class="left"><a href="/board/view/3">[공지] 고객센터 운영시간 변경</a></td>
+                        <td>관리자</td>
+                        <td>2025-11-03</td>
+                        <td>89</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td class="left"><a href="/board/view/2">[점검] 시스템 점검 안내</a></td>
+                        <td>관리자</td>
+                        <td>2025-11-01</td>
+                        <td>112</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td class="left"><a href="/board/view/1">[공지] 쇼핑몰 리뉴얼 안내</a></td>
+                        <td>관리자</td>
+                        <td>2025-10-28</td>
+                        <td>145</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 페이지네이션 -->
+        <div class="pagination">
+            <a href="#" class="prev">&lt;</a>
+            <a href="#" class="active">1</a>
+            <a href="#">2</a>
+            <a href="#">3</a>
+            <a href="#" class="next">&gt;</a>
+        </div>
+    </main>
+
+    <!-- ✅ Footer -->
+    <footer class="footer">
+        <div class="inner">
+            <p>© 2025 MYSHOP. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>

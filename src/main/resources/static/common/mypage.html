@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>마이페이지 | MYSHOP</title>
+    <link rel="stylesheet" href="/css/style.css" />
+</head>
+
+<body>
+
+    <!-- ✅ 헤더 -->
+    <header class="header">
+        <div class="inner header-top">
+            <h1 class="logo"><a href="/">MYSHOP</a></h1>
+            <form class="search-bar">
+                <input type="text" placeholder="검색어를 입력하세요">
+                <button type="submit">검색</button>
+            </form>
+            <div class="header-actions">
+                <a href="/logout">로그아웃</a>
+                <a href="/cart">장바구니</a>
+            </div>
+        </div>
+        <nav class="gnb">
+            <div class="inner gnb-list">
+                <a href="/">홈</a>
+                <a href="/products">상품</a>
+                <a href="/board/list">게시판</a>
+                <a href="/mypage" class="active">마이페이지</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ✅ 마이페이지 -->
+    <main class="mypage-wrap inner">
+        <h2 class="mypage-title">마이페이지</h2>
+
+        <!-- 회원 정보 영역 -->
+        <section class="mypage-section profile-box">
+            <h3>회원 정보</h3>
+            <div class="profile-card">
+                <img src="/images/default_profile.png" alt="프로필 이미지" class="profile-img">
+                <div class="profile-info">
+                    <p><strong>아이디:</strong> user01</p>
+                    <p><strong>이름:</strong> 이태원</p>
+                    <p><strong>이메일:</strong> user01@email.com</p>
+                    <p><strong>가입일:</strong> 2025-10-10</p>
+                </div>
+                <div class="profile-actions">
+                    <a href="/mypage/edit" class="btn btn-primary">정보 수정</a>
+                    <a href="/mypage/delete" class="btn btn-secondary">회원 탈퇴</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 주문 내역 -->
+        <section class="mypage-section order-box">
+            <h3>최근 주문 내역</h3>
+            <table class="order-table">
+                <thead>
+                    <tr>
+                        <th>주문번호</th>
+                        <th>상품명</th>
+                        <th>결제금액</th>
+                        <th>상태</th>
+                        <th>주문일</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>ORD20251101</td>
+                        <td>블랙 무선 이어폰</td>
+                        <td>₩79,000</td>
+                        <td><span class="status done">배송완료</span></td>
+                        <td>2025-11-05</td>
+                    </tr>
+                    <tr>
+                        <td>ORD20251028</td>
+                        <td>화이트 티셔츠</td>
+                        <td>₩19,000</td>
+                        <td><span class="status ing">배송중</span></td>
+                        <td>2025-10-30</td>
+                    </tr>
+                    <tr>
+                        <td>ORD20251010</td>
+                        <td>가죽 카드지갑</td>
+                        <td>₩29,000</td>
+                        <td><span class="status cancel">주문취소</span></td>
+                        <td>2025-10-12</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="order-more">
+                <a href="/order/list" class="btn btn-secondary">전체 주문 내역 보기</a>
+            </div>
+        </section>
+
+        <!-- 바로가기 -->
+        <section class="mypage-section quick-links">
+            <h3>바로가기</h3>
+            <div class="quick-grid">
+                <a href="/cart" class="quick-card">
+                    <div class="icon">🛒</div>
+                    <p>장바구니</p>
+                </a>
+                <a href="/board/list" class="quick-card">
+                    <div class="icon">📝</div>
+                    <p>내 게시글</p>
+                </a>
+                <a href="/wishlist" class="quick-card">
+                    <div class="icon">❤️</div>
+                    <p>찜한 상품</p>
+                </a>
+                <a href="/support" class="quick-card">
+                    <div class="icon">📞</div>
+                    <p>고객센터</p>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- ✅ Footer -->
+    <footer class="footer">
+        <div class="inner">
+            <p>© 2025 MYSHOP. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
