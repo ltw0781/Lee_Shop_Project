@@ -38,11 +38,15 @@
                     </div>
 
                     <th:block th:each="file : ${fileList}">
+                        <div>
+                            <img th:src="|/img?id=${file.id}|" height="100" alt="파일 이미지">
+                        </div>
                         <li>
                             <!-- 파일명 (다운로드) -->
                             <a th:href="|/file/${file.no}|" th:text="${file.originName}"></a>
                             <!-- 파일 삭제 -->
-                            <button type="button" th:onclick="|deleteFile(this, ${file.no})|">삭제</button>
+                            <button type="button" th:onclick="download( [[${file.id}]] )">다운로드</button>
+                            <button type="button" th:onclick="removeFile( this, [[${file.id}]] )">삭제</button>
                         </li>
                     </th:block>
 
@@ -68,6 +72,32 @@
         // 수정 화면 이동
         function moveUpdate() {
             location.href = '/board/update?no=' + no
+        }
+
+        // 다운로드
+        function download(id) {
+            location.href = `/file/${id}`
+        }
+
+        // 파일 목록 비동기 요청 
+        function getFileList() {
+            let parentTable = 'board'
+            let parentNo = '[[${board.no}]]'
+            let url = `/file?parentTable=${parentTable}&parentNo=${parentNo}`
+
+            let request = new XMLHttpRequest()
+
+            request.onreadystatechange = function () {
+                if (request.readyState == request.DONE && request.status == 200) {
+                    console.log('파일 목록 갱신 성공');
+                    let fileList = request.responseText
+                    let $fileList = document.getElementById('file-list')
+                    $fileList.innerHTML = ""        // 기본 파일 목록 비우기
+                    $fileList.innerHTML = fileList  // 새로 조회한 파일목록으로 갱신
+                }
+            }
+            request.open('GET', url, true)
+            request.send()
         }
 
         // 삭제 요청
